@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Conecta Sites cria e mantém sites que ajudam seu negócio a receber mais pedidos e oportunidades.">
+  <title>Conecta Sites | Sites que conectam seu negócio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --purple-soft: #ede9fe;
+      --blue: #101735;
+      --blue-deep: #080d24;
+      --white: #ffffff;
+      --muted: #b7bdd5;
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 24px 70px rgba(4, 7, 30, .32);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--blue-deep);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(100% - 32px, 1120px); margin: 0 auto; }
+
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 88% 10%, rgba(124,58,237,.38), transparent 32%),
+        radial-gradient(circle at 5% 75%, rgba(41,70,160,.24), transparent 28%),
+        var(--blue-deep);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(167,139,250,.25);
+      border-radius: 50%;
+      right: -190px;
+      top: 160px;
+      z-index: -1;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 120px;
+      background: linear-gradient(transparent, var(--blue-deep));
+      z-index: -1;
+    }
+
+    nav {
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      font-size: 1.15rem;
+    }
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(145deg, var(--purple-light), var(--purple));
+      box-shadow: 0 8px 25px rgba(124,58,237,.42);
+    }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .nav-link {
+      display: none;
+      color: var(--muted);
+      font-size: .9rem;
+      transition: color .2s ease;
+    }
+    .nav-link:hover { color: var(--white); }
+
+    .hero-content { padding: 70px 0 90px; position: relative; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--purple-light);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: var(--purple-light);
+    }
+    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; line-height: 1.05; }
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2.8rem, 13vw, 6.6rem);
+      letter-spacing: -.075em;
+    }
+    .gradient-text {
+      background: linear-gradient(100deg, #fff 0%, #c4b5fd 52%, #8b9cfb 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-copy {
+      max-width: 530px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 26px 0 32px;
+    }
+    .hero-actions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+    .button {
+      min-height: 54px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: .96rem;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-3px); }
+    .button-primary {
+      background: var(--purple);
+      box-shadow: 0 12px 30px rgba(124,58,237,.34);
+    }
+    .button-primary:hover { background: #8b5cf6; box-shadow: 0 16px 38px rgba(124,58,237,.48); }
+    .button-secondary { border-color: var(--line); color: var(--muted); }
+    .button-secondary:hover { border-color: rgba(167,139,250,.65); color: var(--white); }
+    .pulse { animation: pulse 2.5s infinite; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 12px 30px rgba(124,58,237,.3); }
+      50% { box-shadow: 0 12px 42px rgba(124,58,237,.72); }
+    }
+    .scroll-hint { display: flex; align-items: center; gap: 10px; color: #747d9f; font-size: .8rem; margin-top: 60px; }
+    .scroll-line { width: 36px; height: 1px; background: #747d9f; }
+
+    section { padding: 92px 0; }
+    .section-label { color: var(--purple-light); font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 16px; }
+    .section-title { font-size: clamp(2rem, 9vw, 4rem); letter-spacing: -.065em; max-width: 720px; }
+    .section-intro { color: var(--muted); max-width: 530px; margin-top: 18px; font-size: 1rem; }
+
+    #servicos { background: #0d1430; }
+    .service-grid { display: grid; gap: 16px; margin-top: 38px; }
+    .service-card {
+      position: relative;
+      padding: 26px;
+      min-height: 310px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(124,58,237,.2), rgba(16,23,53,.7) 65%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); border-color: rgba(167,139,250,.55); }
+    .service-card::after { content: ''; position: absolute; width: 160px; height: 160px; border: 1px solid rgba(167,139,250,.2); border-radius: 50%; right: -70px; top: -70px; }
+    .service-number { color: var(--purple-light); font-family: 'Space Grotesk', sans-serif; font-size: .85rem; }
+    .service-icon { width: 45px; height: 45px; border-radius: 14px; background: rgba(167,139,250,.15); display: grid; place-items: center; color: var(--purple-light); margin: 20px 0; }
+    .service-icon svg { width: 23px; height: 23px; }
+    .service-card h3 { font-size: 1.45rem; letter-spacing: -.04em; max-width: 280px; }
+    .service-card p { color: var(--muted); font-size: .94rem; margin-top: 10px; max-width: 340px; }
+    .service-card .button { width: 100%; margin-top: 26px; }
+
+    .projects-grid { display: grid; gap: 18px; margin-top: 38px; }
+    .project-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #121b3c; box-shadow: var(--shadow); }
+    .project-image { min-height: 245px; display: grid; place-items: center; padding: 24px; text-align: center; position: relative; background: linear-gradient(135deg, #4c1d95, #172554 64%, #0f172a); }
+    .project-image.alt { background: linear-gradient(135deg, #5b21b6, #312e81 56%, #0f1d4b); }
+    .project-image::before { content: ''; position: absolute; width: 190px; height: 190px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; }
+    .placeholder-copy { position: relative; z-index: 1; }
+    .placeholder-copy strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 7px; }
+    .placeholder-copy span { color: #d9d8ef; font-size: .8rem; }
+    .project-body { padding: 22px; }
+    .project-tag { color: var(--purple-light); font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+    .project-body h3 { font-size: 1.28rem; margin: 9px 0; }
+    .project-body p { color: var(--muted); font-size: .92rem; }
+
+    .cta-section { padding: 82px 0; background: linear-gradient(145deg, #4c1d95, #111a3b 70%); }
+    .cta-box { text-align: center; }
+    .cta-box .section-title { margin: 0 auto; }
+    .cta-box p { color: #d9d8ef; max-width: 500px; margin: 18px auto 28px; }
+    .cta-box .button { display: inline-flex; width: auto; }
+
+    footer { padding: 42px 0 30px; background: var(--blue-deep); }
+    .footer-top { display: flex; flex-direction: column; gap: 28px; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+    .footer-brand p { color: var(--muted); max-width: 280px; margin-top: 12px; font-size: .9rem; }
+    .footer-contact { display: flex; flex-direction: column; gap: 10px; color: var(--muted); font-size: .9rem; }
+    .footer-contact a:hover { color: var(--purple-light); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; color: #69718f; font-size: .78rem; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (min-width: 620px) {
+      .container { width: min(100% - 48px, 1120px); }
+      .hero-content { padding: 110px 0 120px; }
+      .hero-actions { flex-direction: row; align-items: center; }
+      .hero-actions .button { width: auto; }
+      .service-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card .button { width: fit-content; }
+      .footer-top { flex-direction: row; justify-content: space-between; }
+    }
+    @media (min-width: 900px) {
+      nav { height: 100px; }
+      .nav-link { display: block; }
+      .hero-content { padding: 125px 0 145px; }
+      .hero-copy { font-size: 1.12rem; }
+      .service-card { min-height: 350px; padding: 32px; }
+      .project-image { min-height: 300px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="inicio">
+    <div class="container">
+      <nav aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Conecta Sites, início">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5a5 5 0 0 0-7.07 0L4.5 6.43a5 5 0 0 0 7.07 7.07L13 12.07"/><path d="M11 19a5 5 0 0 0 7.07 0l1.43-1.43a5 5 0 0 0-7.07-7.07L11 11.93"/><path d="m8.5 15.5 7-7"/></svg>
+          </span>
+          <span>Conecta Sites</span>
+        </a>
+        <a class="nav-link" href="#servicos">Ver serviços <span aria-hidden="true">↗</span></a>
+      </nav>
+
+      <div class="hero-content reveal">
+        <div class="eyebrow">Sites pensados para conectar</div>
+        <h1>Seu negócio merece um site que <span class="gradient-text">trabalha por ele.</span></h1>
+        <p class="hero-copy">Personalizo o site da maneira que for melhor para o seu negócio, com uma experiência clara para o cliente encontrar, confiar e pedir.</p>
+        <div class="hero-actions">
+          <a class="button button-primary pulse" href="https://wa.me/55DDDNUMERO" target="_blank" rel="noopener noreferrer">
+            Falar pelo WhatsApp
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-4.2-1.1L3 20l1.2-4.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 9.5c.5 2 2 3.5 4 4l1-.8c.3-.3.7-.3 1-.1l1.2.6c.3.2.4.5.3.8-.2.7-.8 1.2-1.5 1.2-3.5-.2-6.5-3-6.8-6.5-.1-.7.4-1.4 1.1-1.6.3-.1.6 0 .8.3l.6 1.2c.2.3.1.7-.1 1l-.6.9Z"/></svg>
+          </a>
+          <a class="button button-secondary" href="#servicos">Conhecer serviços</a>
+        </div>
+        <div class="scroll-hint"><span class="scroll-line"></span> Role para descobrir</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="servicos">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label">O que eu faço</div>
+          <h2 class="section-title">Presença digital sem complicar seu dia.</h2>
+          <p class="section-intro">Você cuida do seu comércio. Eu cuido para que seu cliente encontre as informações certas e saiba qual é o próximo passo.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <div>
+              <span class="service-number">01 / CONSTRUÇÃO</span>
+              <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 6.5h.01M11 6.5h.01M14 6.5h.01"/><path d="m8 14 2 2 5-5"/></svg></div>
+              <h3>Criação de Sites</h3>
+              <p>Landing pages e catálogos que apresentam seu comércio com clareza e facilitam o pedido pelo celular.</p>
+            </div>
+            <a class="button button-primary" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento%20para%20cria%C3%A7%C3%A3o%20de%20site." target="_blank" rel="noopener noreferrer">Solicitar orçamento <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div>
+              <span class="service-number">02 / CONTINUIDADE</span>
+              <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.5 9a7 7 0 0 1 11.8-2L20 9M4 15l2.7 2a7 7 0 0 0 11.8-2"/></svg></div>
+              <h3>Manutenção de Sites</h3>
+              <p>Atualizações, ajustes e melhorias para seu site continuar rápido, organizado e pronto para receber clientes.</p>
+            </div>
+            <a class="button button-primary" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento%20para%20manuten%C3%A7%C3%A3o%20de%20site." target="_blank" rel="noopener noreferrer">Solicitar orçamento <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label">Projetos recentes</div>
+          <h2 class="section-title">Ideias que podem virar seu próximo resultado.</h2>
+          <p class="section-intro">Estes espaços estão reservados para mostrar projetos reais, com a história por trás de cada negócio e o caminho até mais pedidos.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-image">
+              <div class="placeholder-copy"><strong>Projeto Açaí 01</strong><span>Imagem de projeto • proporção 4:3</span></div>
+            </div>
+            <div class="project-body"><span class="project-tag">Delivery de açaí</span><h3>Mais clareza no cardápio, menos dúvida no pedido.</h3><p>Placeholder para apresentar o contexto do cliente, a solução criada e o resultado obtido.</p></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-image alt">
+              <div class="placeholder-copy"><strong>Projeto Açaí 02</strong><span>Imagem de projeto • proporção 4:3</span></div>
+            </div>
+            <div class="project-body"><span class="project-tag">Catálogo digital</span><h3>Uma vitrine digital feita para abrir no celular.</h3><p>Placeholder para apresentar como um catálogo organizado ajudou a transformar visitas em pedidos.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="contato">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="section-label">Seu próximo passo</div>
+          <h2 class="section-title">Vamos colocar seu negócio na tela certa?</h2>
+          <p>Conte o que você vende, como atende hoje e o que gostaria de melhorar. Eu retorno com uma ideia objetiva para o seu site.</p>
+          <a class="button button-primary pulse" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20um%20site%20para%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer">Chamar no WhatsApp <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand"><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5a5 5 0 0 0-7.07 0L4.5 6.43a5 5 0 0 0 7.07 7.07L13 12.07"/><path d="M11 19a5 5 0 0 0 7.07 0l1.43-1.43a5 5 0 0 0-7.07-7.07L11 11.93"/><path d="m8.5 15.5 7-7"/></svg></span><span>Conecta Sites</span></a><p>Sites com intenção, clareza e um próximo passo fácil para seu cliente.</p></div>
+        <div class="footer-contact"><a href="https://wa.me/55DDDNUMERO" target="_blank" rel="noopener noreferrer">WhatsApp: (DDD) NUMERO</a><a href="mailto:contato@conectasites.com.br">contato@conectasites.com.br</a><a href="https://instagram.com/conectasites" target="_blank" rel="noopener noreferrer">Instagram: @conectasites</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Conecta Sites</span><span>Feito para conectar.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
