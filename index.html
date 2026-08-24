@@ -54,7 +54,7 @@
     }
 
     /* =========================================
-       FUNDO COM BOLHAS (AGORA MAIS VISÍVEIS)
+       FUNDO COM BOLHAS (BEM VISÍVEIS)
        ========================================= */
     .bg-blobs-container {
       position: fixed;
@@ -67,20 +67,17 @@
     .blob {
       position: absolute;
       border-radius: 50%;
-      /* Reduzi o blur de 90 para 60 para deixar as bolas mais definidas */
       filter: blur(60px); 
       animation: floatBlob 20s infinite alternate ease-in-out;
     }
 
-    /* Bola marcante da esquerda */
     .blob-1 {
       width: 550px; height: 550px;
-      background: rgba(124, 58, 237, 0.45); /* Mais opacidade */
+      background: rgba(124, 58, 237, 0.45);
       top: 15%; left: -10%;
       animation-duration: 25s;
     }
     
-    /* Bola marcante da direita */
     .blob-2 {
       width: 450px; height: 450px;
       background: rgba(41, 70, 160, 0.55);
@@ -89,7 +86,6 @@
       animation-delay: -5s;
     }
     
-    /* Bolas da parte inferior do site */
     .blob-3 {
       width: 600px; height: 600px;
       background: rgba(167, 139, 250, 0.35);
@@ -335,16 +331,14 @@
        ========================================= */
     .hero { min-height: 100svh; position: relative; isolation: isolate; display: flex; flex-direction: column; }
     
-    /* NAV ATUALIZADA (COM O BOTÃO DE VOLTAR) */
     nav { 
       height: 100px; 
       display: flex; 
       align-items: center; 
       justify-content: center; 
-      position: relative; /* Importante para ancorar o botão voltar */
+      position: relative; 
     }
     
-    /* Botão Voltar (Canto superior esquerdo) */
     .btn-voltar {
       position: absolute;
       left: 0;
@@ -370,7 +364,6 @@
       border-color: var(--purple-light);
     }
     
-    /* Ocultar texto do voltar no celular para não espremer a logo */
     @media (max-width: 600px) {
       .btn-voltar span { display: none; }
       .btn-voltar { padding: 8px; }
@@ -397,7 +390,7 @@
       width: 100vw;
       max-width: 800px;
       height: 400px;
-      background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.35) 0%, rgba(124, 58, 237, 0) 65%);
+      background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.4) 0%, rgba(124, 58, 237, 0) 65%);
       z-index: -1;
       pointer-events: none;
       filter: blur(45px);
@@ -408,8 +401,8 @@
       align-items: center; 
       justify-content: center; 
       padding: 6px 18px;
-      background: rgba(167, 139, 250, 0.12);
-      border: 1px solid rgba(167, 139, 250, 0.25);
+      background: rgba(167, 139, 250, 0.15);
+      border: 1px solid rgba(167, 139, 250, 0.3);
       border-radius: 100px;
       color: var(--purple-light); 
       font-size: .85rem; 
@@ -427,18 +420,24 @@
       letter-spacing: -.04em; 
       margin: 0 auto; 
       font-weight: 700; 
-      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      text-shadow: 0 4px 25px rgba(0,0,0,0.5);
     }
     
-    .gradient-text { background: linear-gradient(100deg, #fff 0%, #c4b5fd 52%, #8b9cfb 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    /* CORREÇÃO DO DEGRADÊ: Cores mais nítidas e equilibradas para o texto não sumir no celular */
+    .gradient-text { 
+      background: linear-gradient(100deg, #ffffff 0%, #d8b4fe 55%, #a78bfa 100%); 
+      -webkit-background-clip: text; 
+      background-clip: text; 
+      color: transparent; 
+    }
     
     .hero-copy { 
       max-width: 620px; 
-      color: #e2e8f0; 
+      color: #f1f5f9; /* Tom bem mais claro e legível em qualquer tela */
       font-size: 1.25rem; 
       margin: 28px auto 36px; 
       font-weight: 400; 
-      text-shadow: 0 2px 10px rgba(0,0,0,0.4); 
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
     }
     
     .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; position: relative; z-index: 5; }
@@ -713,16 +712,12 @@
       }, 800);
     }
 
-    // NOVA FUNÇÃO: Voltar para a tela de boas-vindas
     function voltarParaInicio() {
-      // 1. Volta o display flex instantaneamente
       overlay.style.display = 'flex';
       
-      // 2. Aguarda um milissegundo pro navegador registrar o display flex
-      // e depois tira a classe escondido pra animação de opacidade funcionar suave
       setTimeout(() => {
         overlay.classList.remove('escondido');
-        document.body.classList.add('no-scroll'); // Trava o scroll do site novamente
+        document.body.classList.add('no-scroll');
       }, 10);
     }
 
