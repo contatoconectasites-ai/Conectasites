@@ -61,10 +61,10 @@ a{color:inherit;text-decoration:none}button,a{font:inherit}button{color:inherit}
 .welcome.revealing .welcome-copy h1{animation:revealText .82s cubic-bezier(.22,1,.36,1) .08s both}
 .welcome.revealing .welcome-copy p{animation:revealText .76s cubic-bezier(.22,1,.36,1) .24s both}
 .welcome.revealing .welcome-copy .btn{animation:revealText .72s cubic-bezier(.22,1,.36,1) .40s both}
-.hero.hero-entering .hero-copy h1{animation:revealText .82s cubic-bezier(.22,1,.36,1) .08s both}
-.hero.hero-entering .hero-copy>p{animation:revealText .74s cubic-bezier(.22,1,.36,1) .20s both}
-.hero.hero-entering .hero-actions{animation:revealText .72s cubic-bezier(.22,1,.36,1) .32s both}
-.hero.hero-entering .trust-row{animation:revealText .68s cubic-bezier(.22,1,.36,1) .43s both}
+.hero.hero-entering .hero-copy h1{animation:revealText .92s cubic-bezier(.16,1,.3,1) .02s both}
+.hero.hero-entering .hero-copy>p{animation:revealText .86s cubic-bezier(.16,1,.3,1) .12s both}
+.hero.hero-entering .hero-actions{animation:revealText .82s cubic-bezier(.16,1,.3,1) .22s both}
+.hero.hero-entering .trust-row{animation:revealText .78s cubic-bezier(.16,1,.3,1) .31s both}
 
 /* Buttons */
 .btn{min-height:54px;border-radius:14px;padding:14px 20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid transparent;font-weight:820;transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;cursor:pointer}
@@ -77,27 +77,35 @@ a{color:inherit;text-decoration:none}button,a{font:inherit}button{color:inherit}
 .welcome-enter:hover{transform:translateY(-3px) perspective(700px) rotateX(2deg);border-color:rgba(196,181,253,.94);box-shadow:0 12px 0 rgba(4,7,18,.88),0 22px 48px rgba(0,0,0,.46),0 0 20px rgba(167,139,250,.50),0 0 44px rgba(124,58,237,.26),inset 0 1px 0 rgba(255,255,255,.06)}
 .welcome-enter:active{transform:translateY(3px);box-shadow:0 5px 0 rgba(4,7,18,.90),0 10px 24px rgba(0,0,0,.42),0 0 16px rgba(139,92,246,.36),inset 0 1px 0 rgba(255,255,255,.05)}
 @keyframes edgePulse{0%,100%{opacity:.72;filter:brightness(.92)}50%{opacity:1;filter:brightness(1.22)}}
-@keyframes welcomeExit{0%,72%{opacity:1}100%{opacity:0}}
+@keyframes welcomeExit{
+  0%,54%{opacity:1}
+  100%{opacity:0}
+}
 @keyframes buttonToCenter{
-  0%{transform:translate3d(0,0,0) scale(1);opacity:1;box-shadow:0 9px 0 rgba(4,7,18,.90),0 16px 38px rgba(0,0,0,.42),0 0 16px rgba(139,92,246,.36),0 0 34px rgba(124,58,237,.18)}
-  74%{transform:translate3d(var(--portal-dx),var(--portal-dy),0) scale(1.035);opacity:1;box-shadow:0 8px 0 rgba(4,7,18,.78),0 24px 54px rgba(0,0,0,.40),0 0 26px rgba(167,139,250,.48),0 0 58px rgba(124,58,237,.28)}
-  100%{transform:translate3d(var(--portal-dx),var(--portal-dy),0) scale(1.01);opacity:0;box-shadow:0 0 18px rgba(167,139,250,.38)}
+  0%{transform:translate3d(0,0,0) scale(1);opacity:1}
+  72%{transform:translate3d(var(--portal-dx),var(--portal-dy),0) scale(1.025);opacity:1}
+  88%{transform:translate3d(var(--portal-dx),var(--portal-dy),0) scale(1.012);opacity:1}
+  100%{transform:translate3d(var(--portal-dx),var(--portal-dy),0) scale(.985);opacity:0}
 }
 @keyframes portalBloom{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.12)}
-  10%{opacity:1}
-  100%{opacity:1;transform:translate(-50%,-50%) scale(var(--bloom-scale))}
+  0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.18)}
+  14%{opacity:1}
+  82%{opacity:1}
+  100%{opacity:.96;transform:translate3d(-50%,-50%,0) scale(var(--bloom-scale))}
 }
-@keyframes welcomeCopyFade{0%{opacity:1;transform:translateY(0);filter:blur(0)}100%{opacity:0;transform:translateY(-7px);filter:blur(2px)}}
-.portal-bloom{position:fixed;left:50%;top:50%;width:120px;height:120px;border-radius:50%;z-index:10;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.12);background:radial-gradient(circle at 50% 48%,#0d142b 0%,#0a1022 38%,#080c1d 60%,#5b21b6 84%,#8b5cf6 94%,#c4b5fd 100%);box-shadow:0 0 56px rgba(167,139,250,.32),0 0 120px rgba(124,58,237,.20);will-change:transform,opacity;contain:paint}
-.welcome.exiting{pointer-events:none;animation:welcomeExit 1.18s cubic-bezier(.22,.68,.24,1) forwards}
-.welcome.exiting:after{opacity:0;transition:opacity .28s ease}
-.welcome.exiting .welcome-copy h1,.welcome.exiting .welcome-copy p{animation:welcomeCopyFade .28s cubic-bezier(.22,.68,.24,1) forwards}
-.welcome.exiting .welcome-enter{position:fixed;left:var(--portal-left);top:var(--portal-top);width:var(--portal-width);height:var(--portal-height);z-index:12;margin:0;display:grid;place-items:center;white-space:nowrap;overflow:hidden;transform-origin:center center;animation:buttonToCenter .66s cubic-bezier(.18,.82,.28,1) forwards;will-change:transform,opacity;backface-visibility:hidden}
-.welcome.exiting .welcome-enter:before{opacity:0;animation:none;transition:opacity .18s ease}
+@keyframes welcomeCopyFade{
+  0%{opacity:1;transform:translate3d(0,0,0)}
+  100%{opacity:0;transform:translate3d(0,-10px,0)}
+}
+.portal-bloom{position:fixed;left:50%;top:50%;width:128px;height:128px;border-radius:50%;z-index:10;pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0) scale(.18);background:radial-gradient(circle at 50% 48%,#0d142b 0%,#0a1022 42%,#080c1d 66%,#5b21b6 88%,#8b5cf6 100%);will-change:transform,opacity;contain:strict;backface-visibility:hidden}
+.welcome.exiting{pointer-events:none;animation:welcomeExit 1.34s cubic-bezier(.16,1,.3,1) forwards}
+.welcome.exiting:after{opacity:0;transition:opacity .34s ease-out}
+.welcome.exiting .welcome-copy h1,.welcome.exiting .welcome-copy p{animation:welcomeCopyFade .34s cubic-bezier(.22,1,.36,1) forwards}
+.welcome.exiting .welcome-enter{position:fixed;left:var(--portal-left);top:var(--portal-top);width:var(--portal-width);height:var(--portal-height);z-index:12;margin:0;display:grid;place-items:center;white-space:nowrap;overflow:hidden;transform-origin:center center;animation:buttonToCenter .82s cubic-bezier(.16,1,.3,1) forwards;will-change:transform,opacity;backface-visibility:hidden;box-shadow:0 9px 0 rgba(4,7,18,.90),0 16px 38px rgba(0,0,0,.36),0 0 18px rgba(139,92,246,.34)}
+.welcome.exiting .welcome-enter:before{opacity:0;animation:none;transition:opacity .16s linear}
 .welcome.exiting .welcome-enter:after{opacity:0}
-.welcome.exiting .portal-bloom{animation:portalBloom .72s cubic-bezier(.18,.72,.22,1) .48s both}
-.welcome.exiting .floating-circles{opacity:0;transform:scale(1.018);transition:opacity .28s ease,transform .42s cubic-bezier(.22,.68,.24,1)}
+.welcome.exiting .portal-bloom{animation:portalBloom .92s cubic-bezier(.2,.72,.22,1) .54s both}
+.welcome.exiting .floating-circles{opacity:0;transform:scale(1.012);transition:opacity .34s ease-out,transform .56s cubic-bezier(.16,1,.3,1)}
 .btn-secondary{background:rgba(255,255,255,.055);border-color:var(--line)}
 .btn-secondary:hover{background:rgba(255,255,255,.09);border-color:rgba(167,139,250,.4)}
 .icon{width:20px;height:20px;display:block;flex:none}
@@ -266,7 +274,7 @@ function closeWelcome(){
   const dx=(window.innerWidth/2)-(rect.left+rect.width/2);
   const dy=(window.innerHeight/2)-(rect.top+rect.height/2);
   const diagonal=Math.hypot(window.innerWidth,window.innerHeight);
-  const bloomScale=Math.max(12,(diagonal/120)*1.12);
+  const bloomScale=Math.max(11,(diagonal/128)*1.08);
   enterBtn.style.setProperty('--portal-dx',dx+'px');
   enterBtn.style.setProperty('--portal-dy',dy+'px');
   portalBloom.style.setProperty('--bloom-scale',String(bloomScale));
@@ -274,14 +282,19 @@ function closeWelcome(){
   enterBtn.setAttribute('aria-disabled','true');
   welcome.classList.remove('revealing');
   welcome.classList.add('exiting');
+
+  // Começa a revelar o site antes do overlay terminar, criando continuidade.
+  window.setTimeout(function(){
+    document.body.classList.remove('no-scroll');
+    restartHeroReveal();
+  },720);
+
   exitTimer=window.setTimeout(function(){
     welcome.classList.add('closed');
     welcome.classList.remove('exiting');
     isTransitioning=false;
     enterBtn.removeAttribute('aria-disabled');
-    document.body.classList.remove('no-scroll');
-    restartHeroReveal();
-  },1180);
+  },1340);
 }
 function showWelcome(){
   window.clearTimeout(exitTimer);
